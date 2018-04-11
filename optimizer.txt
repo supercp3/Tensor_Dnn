@@ -1,1 +1,4 @@
-optimizer.txt
+tf.train.GradientDescentOptimizer#初学者使用
+tf.train.MomentumOptimizer#高阶常用
+tf.train.AdamOptimizer#高阶常用
+tf.train.RMSPropOptimizer#高阶可以用
