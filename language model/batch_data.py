@@ -23,16 +23,20 @@ def make_batches(id_list,batch_size,num_step):
 	#data是将所有的数据切分成大小为[batch_size,num_batches*num_step的二维向量,一共batch_size 20份
 	#[20,46445]
 	data=np.reshape(data,[batch_size,num_batches*num_step])
+	print(batch_size,num_batches,num_step)
+	print(data.shape)
 	#沿着第二个维度将数据切分成num_batches个batch，存入一个数组
 	#data_batches是将每一个batch_size的数据再切分为num_batches份，每个batch_size份训练35step
 	#1327*20*35
 	data_batches=np.split(data,num_batches,axis=1)
+	print(data_batches[0])
 
 	#重复上述操作，但是每个位置向右移动一位，这里得到的是RNN每一步输出所需要预测的下一个单词
 	label=np.array(id_list[1:num_batches*batch_size*num_step+1])
 	label=np.reshape(label,[batch_size,num_batches*num_step])
 	label_batches=np.split(label,num_batches,axis=1)
 	#返回一个长度为num_batches的数组，其中每一项包括一个data矩阵和一个label矩阵
+	print(list(zip(data_batches,label_batches)))
 	return list(zip(data_batches,label_batches))
 
 
